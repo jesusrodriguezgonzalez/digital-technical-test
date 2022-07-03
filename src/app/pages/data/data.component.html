@@ -1,10 +1,6 @@
-<h1>{{this.api_key}}</h1>
+<h1>Lista de usuarios</h1>
+<div class="d-flex justify-content-center ">
 
-<!-- <ul *ngFor="let user of users">
-  <li>{{user.id}}</li>
-  <li>{{user.login}}</li>
-</ul> -->
-<div class="d-flex justify-content-center w-50">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -18,8 +14,10 @@
       <tr>
         <th scope="row">{{user.id}}</th>
         <td>{{user.login}}</td>
-        <td>{{user.avatar_url}}</td>
-        <td><a [routerLink]="['/details', user.id]" class="btn btn-primary">View Profile</a></td>
+        <!-- <td>{{user.avatar_url}}</td> -->
+        <td><img [src]="user.avatar_url" class="avatar" alt="..." /></td>
+
+        <td><a [routerLink]="['/details', user.login]" class="btn btn-primary">View Profile</a></td>
       </tr>
     </tbody>
   </table>

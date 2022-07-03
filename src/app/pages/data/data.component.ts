@@ -14,7 +14,6 @@ export class DataComponent implements OnInit {
 
   ngOnInit(): void {
     this.api_key = this.storeService.getApikey().value;
-    console.log(this.api_key, 'PRUEBAS');
 
     this.storeService
       .getAllData(this.api_key)

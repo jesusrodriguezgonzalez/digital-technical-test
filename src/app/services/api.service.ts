@@ -9,7 +9,7 @@ import { iResponseApi } from '../interfaces/responseApi';
 })
 export class ApiService {
   ALLDATA_URL: string = 'https://dvapitest.herokuapp.com/api.php';
-  USERDATA_URL: string = 'https://api.github.com/';
+  USERDATA_URL: string = 'https://api.github.com/users/';
   constructor(private http: HttpClient) {}
 
   // getAllData(api_key: string): Observable<iResponseApi> {
@@ -26,7 +26,6 @@ export class ApiService {
   // }
 
   getAllData(api_key: string): Observable<any> {
-    console.log(api_key);
     const httpOptions = {
       method: 'POST',
       headers: new HttpHeaders({
@@ -54,6 +53,7 @@ export class ApiService {
   }
 
   getProfile(login: string): Observable<Array<iObjectApi>> {
+    console.log(login);
     return this.http.get(this.USERDATA_URL + login) as Observable<
       Array<iObjectApi>
     >;

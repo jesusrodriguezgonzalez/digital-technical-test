@@ -30,4 +30,12 @@ export class StoreService {
     });
     return this.$dataApi.asObservable();
   }
+
+  getProfile(login: string) {
+    console.log(login, 'STORE');
+    this.apiService.getProfile(login).subscribe((data) => {
+      this.$dataApi.next(data);
+    });
+    return this.$dataApi.asObservable();
+  }
 }
