@@ -9,10 +9,15 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class DataComponent implements OnInit {
   api_key: any = '';
-  constructor(private router: Router, public apikeyService: StoreService) {}
+  users: any = [];
+  constructor(private router: Router, public storeService: StoreService) {}
 
   ngOnInit(): void {
-    this.api_key = this.apikeyService.getApikey().value;
+    this.api_key = this.storeService.getApikey().value;
     console.log(this.api_key, 'PRUEBAS');
+
+    this.storeService
+      .getAllData(this.api_key)
+      .subscribe((data) => (this.users = data));
   }
 }

@@ -17,6 +17,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/data/data.module').then((m) => m.DataModule),
   },
+  {
+    path: 'details/:id',
+    loadChildren: () =>
+      import('./pages/data/data.module').then((m) => m.DataModule),
+  },
 ];
 
 @NgModule({

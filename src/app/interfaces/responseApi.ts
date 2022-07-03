@@ -1,6 +1,6 @@
 import { iObjectApi } from './objet-api';
 
-export interface iresponseApi {
+export interface iResponseApi {
   code: number;
   error: boolean;
   message: string;
