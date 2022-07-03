@@ -19,9 +19,16 @@ export class StoreService {
   setApiKey(apikey: string) {
     this.$apiKey.next(apikey);
   }
+  setDataApi(data: iObjectApi[]) {
+    console.log(data);
+    this.$dataApi.next(data);
+  }
 
   getApikey() {
     return this.$apiKey;
+  }
+  getDataApi() {
+    return this.$dataApi;
   }
 
   getAllData(api_key: string) {

@@ -10,11 +10,13 @@ import { StoreService } from 'src/app/services/store.service';
 export class DataComponent implements OnInit {
   api_key: any = '';
   users: any = [];
+  p: any = '';
+
   constructor(private router: Router, public storeService: StoreService) {}
 
   ngOnInit(): void {
     this.api_key = this.storeService.getApikey().value;
-
+    this.users = this.storeService.getDataApi().value;
     this.storeService
       .getAllData(this.api_key)
       .subscribe((data) => (this.users = data));
