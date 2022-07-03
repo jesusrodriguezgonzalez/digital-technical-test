@@ -35,7 +35,7 @@ export class ApiService {
     };
     return this.http
       .post(this.ALLDATA_URL, { api_key: api_key }, httpOptions)
-      .pipe(retry(1), catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
 
   handleError(error: any) {

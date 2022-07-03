@@ -1,7 +1,7 @@
 <div class="container-home">
   <h1>Select date and press enter to continue:</h1>
   <div class=" form-group w-25 ">
-    <input type=" date" id="start" name="trip-start" [value]="this.today" (keyup.enter)="onKeyUps($event)"
+    <input type="date" id="start" class="date" name="trip-start" [value]="this.today" (keyup.enter)="onKeyUps($event)"
       formControlName="date">
 
   </div>

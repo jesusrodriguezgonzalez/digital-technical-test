@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
   today: string = '';
   api_key: string | Int32Array = '';
   currentDate: string | undefined = '';
-  sample: any = '';
 
   constructor(
     private datePipe: DatePipe,
@@ -28,9 +27,10 @@ export class HomeComponent implements OnInit {
   }
   onKeyUps(event: any) {
     const dateUser = event.target.value;
-    this.currentDate = this.datePipe
-      .transform(dateUser, 'dd-MM-YYYY')
-      ?.toLowerCase();
+    this.currentDate = this.datePipe.transform(
+      dateUser,
+      'dd-MM-YYYY'
+    ) as string;
     this.hashMd5(this.currentDate as string);
     this.storeService.setApiKey(this.api_key as string);
     this.router.navigate([`data`]);

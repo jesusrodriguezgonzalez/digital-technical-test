@@ -20,7 +20,6 @@ export class StoreService {
     this.$apiKey.next(apikey);
   }
   setDataApi(data: iObjectApi[]) {
-    console.log(data);
     this.$dataApi.next(data);
   }
 
@@ -39,7 +38,6 @@ export class StoreService {
   }
 
   getProfile(login: string) {
-    console.log(login, 'STORE');
     this.apiService.getProfile(login).subscribe((data) => {
       this.$dataApi.next(data);
     });

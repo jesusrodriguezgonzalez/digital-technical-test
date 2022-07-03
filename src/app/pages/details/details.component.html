@@ -1,5 +1,5 @@
-<div class="d-flex justify-content-center">
-  <div class="card mb-3" style="max-width: 540px">
+<div class="row d-flex justify-content-center align-middle">
+  <div class="card mb-3 card" style="max-width: 540px">
     <div class="row g-0">
       <div class="col-md-4">
         <img [src]="user.avatar_url" class="img-fluid rounded-start" alt="..." />
@@ -11,19 +11,19 @@
             Nickname:
             <small class="text-muted capitalice">{{user.login}}</small>
           </p>
-          <p class="card-text">
+          <p *ngIf="user.location" class="card-text">
             Location:
             <small class="text-muted">{{user.location}}</small>
           </p>
-          <p class="card-text">
+          <p *ngIf="user.bio" class="card-text">
             Bio:
             <small class="text-muted">{{user.bio}}</small>
           </p>
-          <p class="card-text">
+          <p *ngIf="user.type" class="card-text">
             Type:
             <small class="text-muted">{{user.type}}</small>
           </p>
-          <p class="card-text">
+          <p *ngIf="user.company" class="card-text">
             Company:
             <small class="text-muted">{{user.company}}</small>
           </p>
@@ -33,5 +33,7 @@
   </div>
 
 </div>
-<a [routerLink]="['/home']" class="btn btn-primary">Previous</a>
-<a [routerLink]="['/home']" class="btn btn-primary">Next</a>
+
+
+<a (click)="previousUser(user.login)" class="btn btn-primary">Previous</a>
+<a (click)="nextUser(user.login)" class="btn btn-primary">Next</a>
