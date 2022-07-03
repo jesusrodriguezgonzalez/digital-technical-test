@@ -17,13 +17,12 @@ export class HomeComponent implements OnInit {
   constructor(
     private datePipe: DatePipe,
     private router: Router,
-    public apikeyService: StoreService
+    public storeService: StoreService
   ) {}
 
   hashMd5(date: string) {
     const md5 = new Md5();
     this.api_key = md5.appendStr(date!).end();
-    console.log(this.api_key, 'KEY');
   }
   onKeyUps(event: any) {
     const dateUser = event.target.value;
@@ -31,7 +30,8 @@ export class HomeComponent implements OnInit {
       .transform(dateUser, 'dd-MM-YYYY')
       ?.toLowerCase();
     this.hashMd5(this.currentDate as string);
-    this.apikeyService.setApiKey(this.api_key as string);
+    this.storeService.setApiKey(this.api_key as string);
+
     this.router.navigate([`data`]);
   }
   ngOnInit(): void {

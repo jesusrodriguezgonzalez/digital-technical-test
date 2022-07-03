@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { Md5 } from 'ts-md5';
 import { DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    SweetAlert2Module,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

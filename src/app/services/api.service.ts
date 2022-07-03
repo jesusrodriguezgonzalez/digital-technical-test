@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
+import Swal from 'sweetalert2';
 import { iObjectApi } from '../interfaces/objet-api';
 import { iResponseApi } from '../interfaces/responseApi';
 
@@ -46,14 +47,19 @@ export class ApiService {
       // server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    alert(errorMessage);
+
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'The token is not valid',
+    });
+
     return throwError(() => {
       return errorMessage;
     });
   }
 
   getProfile(login: string): Observable<Array<iObjectApi>> {
-    console.log(login);
     return this.http.get(this.USERDATA_URL + login) as Observable<
       Array<iObjectApi>
     >;
