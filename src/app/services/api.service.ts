@@ -44,9 +44,7 @@ export class ApiService {
     });
   }
 
-  getProfile(login: string): Observable<Array<iObjectApi>> {
-    return this.http.get(this.USERDATA_URL + login) as Observable<
-      Array<iObjectApi>
-    >;
+  getProfile(login: string): Observable<iObjectApi> {
+    return this.http.get(this.USERDATA_URL + login) as Observable<iObjectApi>;
   }
 }

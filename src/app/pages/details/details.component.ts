@@ -17,9 +17,7 @@ export class DetailsComponent implements OnInit {
   constructor(
     public storeService: StoreService,
     private route: ActivatedRoute
-  ) {
-    console.log('Carga detalles');
-  }
+  ) {}
 
   addPropertyArr() {
     const newArr = this.allUsers.map(
@@ -35,23 +33,22 @@ export class DetailsComponent implements OnInit {
   }
 
   nextUser(name: string) {
-    console.log(this.indexCurrentUser + 1);
-    const nextUser = this.allUsers.map(
+    const nextUser = this.allUsers.find(
       (item: any, index) => item.index === this.indexCurrentUser + 1
     );
+    this.indexCurrentUser = this.checkIndex(nextUser?.login as string);
     this.user = nextUser;
   }
 
   previousUser(user: string) {
-    console.log(this.allUsers, 'ALLUSERS');
-    console.log(this.indexCurrentUser - 1);
     const prevUser = this.allUsers.find(
       (item: any, index) => item.index === this.indexCurrentUser - 1
     );
+    this.indexCurrentUser = this.checkIndex(prevUser?.login as string);
     this.user = prevUser;
   }
   ngOnInit(): void {
-    this.storeService.getDataApi().subscribe((data) => (this.user = data));
+    this.storeService.getDataUser().subscribe((data) => (this.user = data));
     this.storeService.getProfile(this.login as string);
     this.storeService.getApikey().subscribe((data) => (this.api_key = data));
     this.storeService.getDataApi().subscribe((data) => (this.allUsers = data));
