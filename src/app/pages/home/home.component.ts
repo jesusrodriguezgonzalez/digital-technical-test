@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   today: string = '';
   api_key: string | Int32Array = '';
   currentDate: string | undefined = '';
+  error: any = '';
 
   constructor(
     private datePipe: DatePipe,
@@ -33,20 +34,22 @@ export class HomeComponent implements OnInit {
     ) as string;
     this.hashMd5(this.currentDate as string);
     this.storeService.setApiKey(this.api_key as string);
-    this.router.navigate([`data`]);
-    // this.storeService.getAllData(this.api_key as string).subscribe({
-    //   next: (data) => {
-    //     this.storeService.setDataApi(data);
-    //     this.router.navigate([`data`]);
-    //   },
-    //   error: (error) => {
-    //     Swal.fire({
-    //       icon: 'error',
-    //       title: 'Oops...',
-    //       text: 'The token is not valid',
-    //     });
-    //   },
-    // });
+
+    this.storeService.getDataApi().subscribe({
+      next: (data) => {
+        if (data.length > 0) {
+          this.router.navigate([`data`]);
+        }
+      },
+      error: (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'The token is not valid',
+        });
+      },
+    });
+    this.storeService.getAllData(this.api_key as string);
   }
   ngOnInit(): void {
     const date = new Date();

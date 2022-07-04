@@ -34,13 +34,11 @@ export class StoreService {
     this.apiService.getAllData(api_key).subscribe((data) => {
       this.$dataApi.next(data.object);
     });
-    return this.$dataApi.asObservable();
   }
 
   getProfile(login: string) {
     this.apiService.getProfile(login).subscribe((data) => {
       this.$dataApi.next(data);
     });
-    return this.$dataApi.asObservable();
   }
 }

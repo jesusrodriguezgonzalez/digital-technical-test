@@ -1,4 +1,3 @@
-import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { iObjectApi } from 'src/app/interfaces/objet-api';
@@ -18,7 +17,9 @@ export class DetailsComponent implements OnInit {
   constructor(
     public storeService: StoreService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    console.log('Carga detalles');
+  }
 
   addPropertyArr() {
     const newArr = this.allUsers.map(
@@ -34,28 +35,26 @@ export class DetailsComponent implements OnInit {
   }
 
   nextUser(name: string) {
-    // console.log(this.indexCurrentUser + 1);
-    // const nextUser = this.allUsers.map(
-    //   (item: any, index) => item.index === this.indexCurrentUser + 1
-    // );
-    // this.user = nextUser;
+    console.log(this.indexCurrentUser + 1);
+    const nextUser = this.allUsers.map(
+      (item: any, index) => item.index === this.indexCurrentUser + 1
+    );
+    this.user = nextUser;
   }
 
   previousUser(user: string) {
-    // console.log(this.indexCurrentUser - 1);
-    // const prevUser = this.allUsers.find(
-    //   (item: any, index) => item.index === this.indexCurrentUser - 1
-    // );
-    // this.user = prevUser;
+    console.log(this.allUsers, 'ALLUSERS');
+    console.log(this.indexCurrentUser - 1);
+    const prevUser = this.allUsers.find(
+      (item: any, index) => item.index === this.indexCurrentUser - 1
+    );
+    this.user = prevUser;
   }
   ngOnInit(): void {
-    this.storeService
-      .getProfile(this.login as string)
-      .subscribe((data) => (this.user = data));
+    this.storeService.getDataApi().subscribe((data) => (this.user = data));
+    this.storeService.getProfile(this.login as string);
     this.storeService.getApikey().subscribe((data) => (this.api_key = data));
-    this.storeService
-      .getAllData(this.api_key)
-      .subscribe((data) => (this.allUsers = data));
+    this.storeService.getDataApi().subscribe((data) => (this.allUsers = data));
     this.addPropertyArr();
     this.indexCurrentUser = this.checkIndex(this.login);
   }

@@ -17,8 +17,7 @@ export class DataComponent implements OnInit {
   ngOnInit(): void {
     this.api_key = this.storeService.getApikey().value;
     this.users = this.storeService.getDataApi().value;
-    this.storeService
-      .getAllData(this.api_key)
-      .subscribe((data) => (this.users = data));
+    this.storeService.getDataApi().subscribe((data) => (this.users = data));
+    this.storeService.getAllData(this.api_key);
   }
 }
