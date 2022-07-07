@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StoreService } from 'src/app/services/store.service';
 
@@ -8,7 +8,7 @@ import { StoreService } from 'src/app/services/store.service';
   styleUrls: ['./data.component.scss'],
 })
 export class DataComponent implements OnInit {
-  api_key: any = '';
+  api_key: string = '';
   users: any = [];
   p: any = '';
 

@@ -18,4 +18,5 @@ export interface iObjectApi {
   type: string;
   site_admin: boolean;
   score: number;
+  index?: number;
 }
